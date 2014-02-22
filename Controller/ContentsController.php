@@ -12,11 +12,22 @@ class ContentsController extends ContentManagerAppController {
     }
 
 	public function view($id = null) {
-		if (!$this->Content->exists($id)) {
-			throw new NotFoundException(__('Invalid content'));
-		}
-		$options = array('conditions' => array('Content.' . $this->Content->primaryKey => $id));
-		$this->set('content', $this->Content->find('first', $options));
+		if(empty($id)):
+			if(empty($this->request->params['contentSlug'])):
+				throw new NotFoundException(__('Invalid content'));
+			endif;
+			$content = $this->Content->findBySlug($this->request->params['contentSlug']);
+			if(empty($content)):
+				throw new NotFoundException(__('Invalid content'));
+			endif;
+		else:
+			if (!$this->Content->exists($id)) {
+				throw new NotFoundException(__('Invalid content'));
+			}
+			$options = array('conditions' => array('Content.' . $this->Content->primaryKey => $id));
+			$content = $this->Content->findById($id);
+		endif;
+		$this->set('content', $content);
 	}
 
 	public function admin_index() {
