@@ -1,5 +1,5 @@
-<div class="pages index">
-	<h2><?php echo __('Pages'); ?></h2>
+<div class="contents index">
+	<h2><?php echo __('Contents'); ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
 			<th><?php echo $this->Paginator->sort('id'); ?></th>
@@ -7,15 +7,15 @@
 			<th><?php echo $this->Paginator->sort('content'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($pages as $page): ?>
+	<?php foreach ($contents as $content): ?>
 	<tr>
-		<td><?php echo h($page['Page']['id']); ?>&nbsp;</td>
-		<td><?php echo h($page['Page']['title']); ?>&nbsp;</td>
-		<td><?php echo h($page['Page']['content']); ?>&nbsp;</td>
+		<td><?php echo h($content['Content']['id']); ?>&nbsp;</td>
+		<td><?php echo h($content['Content']['title']); ?>&nbsp;</td>
+		<td><?php echo h($content['Content']['content']); ?>&nbsp;</td>
 		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $page['Page']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $page['Page']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $page['Page']['id']), null, __('Are you sure you want to delete # %s?', $page['Page']['id'])); ?>
+			<?php echo $this->Html->link(__('View'), array('action' => 'view', $content['Content']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $content['Content']['id'])); ?>
+			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $content['Content']['id']), null, __('Are you sure you want to delete # %s?', $content['Content']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -23,7 +23,7 @@
 	<p>
 	<?php
 	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
+	'format' => __('Content {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
 	));
 	?>	</p>
 	<div class="paging">
@@ -37,6 +37,6 @@
 <div class="actions">
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
-		<li><?php echo $this->Html->link(__('New Page'), array('action' => 'add')); ?></li>
+		<li><?php echo $this->Html->link(__('New Content'), array('action' => 'add')); ?></li>
 	</ul>
 </div>

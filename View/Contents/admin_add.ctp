@@ -1,10 +1,11 @@
-<div class="pages form">
-<?php echo $this->Form->create('Page'); ?>
+<div class="contents form">
+<?php echo $this->Form->create('Content'); ?>
 	<fieldset>
-		<legend><?php echo __('Admin Add Page'); ?></legend>
+		<legend><?php echo __('Admin Add Content'); ?></legend>
 	<?php
 		echo $this->Form->input('title');
 		echo $this->Form->input('content');
+		echo $this->Form->input('slug');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
@@ -13,6 +14,6 @@
 	<h3><?php echo __('Actions'); ?></h3>
 	<ul>
 
-		<li><?php echo $this->Html->link(__('List Pages'), array('action' => 'index')); ?></li>
+		<li><?php echo $this->Html->link(__('List Contents'), array('action' => 'index')); ?></li>
 	</ul>
 </div>
