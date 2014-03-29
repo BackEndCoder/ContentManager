@@ -1,0 +1,27 @@
+{
+  "name": "BackEndCoder/ContentManager",
+  "version": "0.0.1",
+  "description": "No description",
+  "type": "cakephp-plugin",
+  "keywords": [
+    "cakephp"
+  ],
+  "homepage": "http://github.com/BackEndCoder/ContentManager",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Steve Coverdale",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "composer/installers": "*"
+  },
+  "support": {
+    "issues": "https://github.com/BackEndCoder/ContentManager/issues",
+    "source": "https://github.com/BackEndCoder/ContentManager"
+  },
+  "extra": {
+    "installer-name": "ContentManager"
+  }
+}
