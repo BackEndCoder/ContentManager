@@ -4,7 +4,13 @@ class Content extends ContentManagerAppModel {
 
 	public $displayField = 'title';
 
-    public function getContent($id) {
-        return $this->find('first', array('conditions' => array('id' => $id)));
-    }
+/**
+ * getContent method
+ *
+ * @param string $id
+ * @return void
+ */
+	public function getContent($id) {
+		return $this->find('first', array('conditions' => array('id' => $id)));
+	}
 }
