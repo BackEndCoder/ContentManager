@@ -1,11 +1,19 @@
 <?php
-
 App::uses('ContentManagerAppController', 'ContentManager.Controller');
-
+/**
+ * Contents Controller
+ *
+ * @property Content $Content
+ */
 class ContentsController extends ContentManagerAppController {
 
 	public $components = array('Paginator', 'Session');
 
+/**
+ * beforeFilter method
+ *
+ * @return void
+ */
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$user = $this->Auth->user();
@@ -13,17 +21,23 @@ class ContentsController extends ContentManagerAppController {
 		$this->Auth->allow('show');
 	}
 
+/**
+ * view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function view($id = null) {
 		if(empty($id)){
-			if(empty($this->request->params['contentSlug'])){
+			if(empty($this->request->params['contentSlug'])) {
 				throw new NotFoundException(__('Invalid content'));
 			}
 			$content = $this->Content->findBySlug($this->request->params['contentSlug']);
-			if(empty($content)){
+			if(empty($content)) {
 				throw new NotFoundException(__('Invalid content'));
 			}
-		}
-		else {
+		} else {
 			if (!$this->Content->exists($id)) {
 				throw new NotFoundException(__('Invalid content'));
 			}
@@ -38,6 +52,13 @@ class ContentsController extends ContentManagerAppController {
 		$this->set('contents', $this->Paginator->paginate());
 	}
 
+/**
+ * admin_view method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_view($id = null) {
 		if (!$this->Content->exists($id)) {
 			throw new NotFoundException(__('Invalid content'));
@@ -47,6 +68,11 @@ class ContentsController extends ContentManagerAppController {
 		$this->layout = "admin";
 	}
 
+/**
+ * admin_add method
+ *
+ * @return void
+ */
 	public function admin_add() {
 		if ($this->request->is('post')) {
 			$this->Content->create();
@@ -60,6 +86,13 @@ class ContentsController extends ContentManagerAppController {
 		$this->layout = "admin";
 	}
 
+/**
+ * admin_edit method
+ *
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_edit($id = null) {
 		if (!$this->Content->exists($id)) {
 			throw new NotFoundException(__('Invalid content'));
@@ -78,7 +111,18 @@ class ContentsController extends ContentManagerAppController {
 		$this->layout = "admin";
 	}
 
+/**
+ * admin_delete method
+ *
+ * @throws MethodNotAllowedException
+ * @throws NotFoundException
+ * @param string $id
+ * @return void
+ */
 	public function admin_delete($id = null) {
+		if (!$this->request->is('post')) {
+			throw new MethodNotAllowedException();
+		}
 		$this->Content->id = $id;
 		if (!$this->Content->exists()) {
 			throw new NotFoundException(__('Invalid content'));
@@ -93,6 +137,12 @@ class ContentsController extends ContentManagerAppController {
 		$this->layout = "admin";
 	}
 
+/**
+ * getContent method
+ *
+ * @param string $id
+ * @return void
+ */
 	public function getContent($id) {
 		return $this->Content->getContent($id);
 	}
