@@ -1,32 +1,35 @@
 <?php
+
 App::uses('ContentManagerAppController', 'ContentManager.Controller');
+
 class ContentsController extends ContentManagerAppController {
 
 	public $components = array('Paginator', 'Session');
 
-    public function beforeFilter() {
-        parent::beforeFilter();
-        $user = $this->Auth->user();
-        $this->set('current_user', $user);
-        $this->Auth->allow('show');
-    }
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$user = $this->Auth->user();
+		$this->set('current_user', $user);
+		$this->Auth->allow('show');
+	}
 
 	public function view($id = null) {
-		if(empty($id)):
-			if(empty($this->request->params['contentSlug'])):
+		if(empty($id)){
+			if(empty($this->request->params['contentSlug'])){
 				throw new NotFoundException(__('Invalid content'));
-			endif;
+			}
 			$content = $this->Content->findBySlug($this->request->params['contentSlug']);
-			if(empty($content)):
+			if(empty($content)){
 				throw new NotFoundException(__('Invalid content'));
-			endif;
-		else:
+			}
+		}
+		else {
 			if (!$this->Content->exists($id)) {
 				throw new NotFoundException(__('Invalid content'));
 			}
 			$options = array('conditions' => array('Content.' . $this->Content->primaryKey => $id));
 			$content = $this->Content->findById($id);
-		endif;
+		}
 		$this->set('content', $content);
 	}
 
@@ -41,7 +44,7 @@ class ContentsController extends ContentManagerAppController {
 		}
 		$options = array('conditions' => array('Content.' . $this->Content->primaryKey => $id));
 		$this->set('content', $this->Content->find('first', $options));
-        $this->layout = "admin";
+		$this->layout = "admin";
 	}
 
 	public function admin_add() {
@@ -54,7 +57,7 @@ class ContentsController extends ContentManagerAppController {
 				$this->Session->setFlash(__('The content could not be saved. Please, try again.'));
 			}
 		}
-        $this->layout = "admin";
+		$this->layout = "admin";
 	}
 
 	public function admin_edit($id = null) {
@@ -72,7 +75,7 @@ class ContentsController extends ContentManagerAppController {
 			$options = array('conditions' => array('Content.' . $this->Content->primaryKey => $id));
 			$this->request->data = $this->Content->find('first', $options);
 		}
-        $this->layout = "admin";
+		$this->layout = "admin";
 	}
 
 	public function admin_delete($id = null) {
@@ -87,10 +90,10 @@ class ContentsController extends ContentManagerAppController {
 			$this->Session->setFlash(__('The content could not be deleted. Please, try again.'));
 		}
 		return $this->redirect(array('action' => 'index'));
-        $this->layout = "admin";
+		$this->layout = "admin";
 	}
 
-    public function getContent($id) {
-        return $this->Content->getContent($id);
-    }
+	public function getContent($id) {
+		return $this->Content->getContent($id);
+	}
 }
