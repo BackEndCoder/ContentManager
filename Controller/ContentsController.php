@@ -25,7 +25,7 @@ class ContentsController extends ContentManagerAppController {
  * view method
  *
  * @throws NotFoundException
- * @param string $id
+ * @param integer $id Id to look up
  * @return void
  */
 	public function view($id = null) {
@@ -61,7 +61,7 @@ class ContentsController extends ContentManagerAppController {
  * admin_view method
  *
  * @throws NotFoundException
- * @param string $id
+ * @param integer $id Id to look up
  * @return void
  */
 	public function admin_view($id = null) {
@@ -95,7 +95,7 @@ class ContentsController extends ContentManagerAppController {
  * admin_edit method
  *
  * @throws NotFoundException
- * @param string $id
+ * @param integer $id Id to look up
  * @return void
  */
 	public function admin_edit($id = null) {
@@ -121,7 +121,7 @@ class ContentsController extends ContentManagerAppController {
  *
  * @throws MethodNotAllowedException
  * @throws NotFoundException
- * @param string $id
+ * @param integer $id Id to look up
  * @return void
  */
 	public function admin_delete($id = null) {
@@ -144,7 +144,7 @@ class ContentsController extends ContentManagerAppController {
 /**
  * getContent method
  *
- * @param string $id
+ * @param integer $id Id to look up
  * @return void
  */
 	public function getContent($id) {

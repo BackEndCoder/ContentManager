@@ -4,7 +4,7 @@ class ContentRoute extends CakeRoute {
 /**
  * parse method
  *
- * @param string $url
+ * @param string $url Url to lookup
  * @return void
  */
 	public function parse($url) {

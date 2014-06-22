@@ -7,7 +7,7 @@ class Content extends ContentManagerAppModel {
 /**
  * getContent method
  *
- * @param string $id
+ * @param integer $id Id to look up
  * @return void
  */
 	public function getContent($id) {
