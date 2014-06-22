@@ -29,12 +29,12 @@ class ContentsController extends ContentManagerAppController {
  * @return void
  */
 	public function view($id = null) {
-		if(empty($id)){
-			if(empty($this->request->params['contentSlug'])) {
+		if (empty($id)) {
+			if (empty($this->request->params['contentSlug'])) {
 				throw new NotFoundException(__('Invalid content'));
 			}
 			$content = $this->Content->findBySlug($this->request->params['contentSlug']);
-			if(empty($content)) {
+			if (empty($content)) {
 				throw new NotFoundException(__('Invalid content'));
 			}
 		} else {
@@ -47,6 +47,11 @@ class ContentsController extends ContentManagerAppController {
 		$this->set('content', $content);
 	}
 
+/**
+ * admin_index method
+ *
+ * @return void
+ */
 	public function admin_index() {
 		$this->Content->recursive = 0;
 		$this->set('contents', $this->Paginator->paginate());
@@ -133,8 +138,7 @@ class ContentsController extends ContentManagerAppController {
 		} else {
 			$this->Session->setFlash(__('The content could not be deleted. Please, try again.'));
 		}
-		return $this->redirect(array('action' => 'index'));
-		$this->layout = "admin";
+		$this->redirect(array('action' => 'index'));
 	}
 
 /**
